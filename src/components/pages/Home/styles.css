@@ -1,0 +1,19 @@
+.container{
+    background-color: #f6984a;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 207px;
+    align-items: center;
+}
+
+.logo{
+    height: 60px;
+    height:58px;
+    padding-left:20px;   
+}
+
+.btnHome{
+    padding-right: 30px;
+}
+
