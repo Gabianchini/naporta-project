@@ -1,19 +1,17 @@
 import React from "react";
 import localforage from "localforage";
 import "./styles.css";
-import logo from '../../../assets/img/naporta-logo.png';
-import Button from "../../atoms/button/Button";
-import OrderList from "../../organisms/List/List";
-import OrderForm from "../../organisms/Form/OrderForm";
-import ClientForm from "../../organisms/Form/ClientForm";
+import logo from '../../../assets/naporta-logo.png';
+import Button from '../../Button'
+import List from '../../List'
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+ 
 
 
-
-const Home = ( ) => {
+const HomePage = ( ) => {
     const [orders, setOrders] = useState([]);
     const [clients,setClients] = useState([])
 
@@ -59,7 +57,7 @@ const Home = ( ) => {
         </header>
         <main className="list">
         
-        <OrderList orders={orders} />
+        <List orders={orders} />
              
         </main>
         {/* <OrderForm onAddOrder={addOrder} /> */}
@@ -69,4 +67,4 @@ const Home = ( ) => {
     );
 }
 
-export default Home;
+export default HomePage;

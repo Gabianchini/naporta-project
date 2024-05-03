@@ -3,7 +3,7 @@ import localforage from 'localforage';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const OrderForm = ({onAddOrder}) => {
+const Form = ({onAddOrder}) => {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [sendDate, setSendDate] = useState('');
@@ -179,4 +179,4 @@ const OrderForm = ({onAddOrder}) => {
   );
 };
 
-export default OrderForm;
+export default Form;

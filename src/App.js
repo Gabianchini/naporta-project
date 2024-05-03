@@ -1,10 +1,11 @@
-import Home from './components/pages/Home/HomePage';
+import HomePage from './components/pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import OrderDetailsPage from './components/pages/OrdersDetails/OrdersDetails';
+import OrderDetailsPage from './components/pages/OrdersDetails';
 import './App.css';
-import OrderForm from './components/organisms/Form/OrderForm';
+import Form from './components/Form';
 import { useState } from 'react';
-import ClientForm from './components/organisms/Form/ClientForm';
+import AddOrderPage from './components/pages/AddOrder';
+
 
 function App() {
   const [orders, setOrders] = useState([]);
@@ -23,9 +24,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/order/:id" element={<OrderDetailsPage/>} /> 
-        <Route path="/addorder" element={<OrderForm onAddOrder={addOrder}/>}/>
+        <Route path="/addorder" element={<AddOrderPage/>}/>
       </Routes>
     </Router>
   );

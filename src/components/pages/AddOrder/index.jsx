@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import OrderForm from 'path-to-your-order-form-component';
-import OrderDetails from 'path-to-your-order-details-component';
-import OrderList from '../../organisms/List/List';
+import Form from '../../Form';
 import localforage from 'localforage';
 
 
-const OrdersPage = () => {
+const AddOrderPage = () => {
   const [orders, setOrders] = useState([]);
 
   
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const orderKeys = await localforage.keys();
-        const orderDetails = await Promise.all(orderKeys.map(key => localforage.getItem(key)));
-        setOrders(orderDetails.filter(order => order));
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchOrders = async () => {
+  //     try {
+  //       const orderKeys = await localforage.keys();
+  //       const orderDetails = await Promise.all(orderKeys.map(key => localforage.getItem(key)));
+  //       setOrders(orderDetails.filter(order => order));
+  //     } catch (error) {
+  //       console.error('Error fetching orders:', error);
+  //     }
+  //   };
 
-    fetchOrders();
-  }, []);
+  //   fetchOrders();
+  // }, []);
 
   const addOrder = async (newOrder) => {
     try {
@@ -37,14 +35,12 @@ const OrdersPage = () => {
 
   return (
     <div>
-      <OrderForm onAddOrder={addOrder} />
-      <OrderList orders={orders} />
-      <OrderDetails />
+      <Form onAddOrder={addOrder} />
     </div>
   );
 };
 
-export default OrdersPage;
+export default AddOrderPage;
 
 // const OrdersPage = () => {
 //     const [orders, setOrders] = useState([]);

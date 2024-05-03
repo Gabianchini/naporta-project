@@ -19,24 +19,24 @@
     column-count: 2;
 }
 .parent{
-    display: flex; 
-    flex-direction: row; 
+    display: flex;
+    flex-direction: row;
 }
-.column1 { 
+.column1 {
     width:46px;
-    text-align: right; 
-    
-} 
+    text-align: right;
 
-.column2 { 
+}
+
+.column2 {
     width:300px;
-    
-     
-} 
+
+
+}
 
 .routeText{
     font-size:16px;
-   
+
 }
 
 .orderTitle{
@@ -54,7 +54,7 @@
 .backVector{
     width: 24px;
     height: 24px;
-   
+
 }
 
 .detailsContainer{
@@ -62,6 +62,6 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 207px;
+    height: 150px;
     background-color: #f6984a;
 }

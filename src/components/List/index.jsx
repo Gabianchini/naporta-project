@@ -3,7 +3,7 @@ import React from 'react';
 import './styles.css'
 import { Link } from 'react-router-dom';
 
-const OrderList = ({ orders }) => {
+const List = ({ orders }) => {
   return (
     <div className='listContainer'>
       <h2 className='listTitle'>Pedidos</h2> 
@@ -21,4 +21,4 @@ const OrderList = ({ orders }) => {
   );
 };
 
-export default OrderList;
+export default List;
