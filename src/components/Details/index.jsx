@@ -19,7 +19,6 @@ const Details = ( ) => {
         // Fetch order details
         const orderDetails = await localforage.getItem(orderId);
         setOrder(orderDetails);     
-        console.log(order.fullname)   
       } catch (error) {
         console.error('Error fetching order and client details:', error);
       }
@@ -43,7 +42,7 @@ const Details = ( ) => {
       <p className='orderTitle'>Pedido {order.id}</p>
      </header> 
     <main className='mapContainer'>
-     <Map sentFromAddress={'1900 Amphitheatre Parkway, Mountain View, CA'}  receivedAtAddress={'1700 Charleston Road, Mountain View, CA'}/>
+     <Map sentFromAddress={order.origin}  receivedAtAddress={order.destination}/>
      </main>
         <section className='sectionDetails'>
           <div className='parent'>
@@ -52,9 +51,10 @@ const Details = ( ) => {
               <div className='square'><img className='vector' src={flagVector} alt="Flag vector"/></div>
             </div>
             <div className='column2'>
-              <p className='routeText'>Saindo em '1900 Amphitheatre Parkway, Mountain View, CA'</p><p className='dateText'>{order.sendDate} as {order.sendHour}</p>
-              <p className='routeText'>Chegando em '1700 Charleston Road, Mountain View, CA'</p><p className='dateText'>{order.prevArrivalDate} as {order.prevArrivalHour}</p>
+              <p className='routeText'>Saindo em {order.origin}</p><p className='dateText'>{order.sendDate} as {order.sendHour}</p>
+              <p className='routeText'>Chegando em {order.destination}</p><p className='dateText'>{order.prevArrivalDate} as {order.prevArrivalHour}</p>
             </div>
+            
           </div>
           <p className='detailLabel'>Pedido</p>
           <p className='orderTitle'>{order.id}</p>

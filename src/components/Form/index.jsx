@@ -1,44 +1,71 @@
-import React, { useState,useEffect } from 'react';
-import localforage from 'localforage';
-import './styles.css'
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useRef, useEffect } from "react";
+import localforage from "localforage";
+import "./styles.css";
+import { v4 as uuidv4 } from "uuid";
+import { useJsApiLoader, Autocomplete} from "@react-google-maps/api";
 
 
-const Form = ({onAddOrder}) => {
-  const [origin, setOrigin] = useState('');
-  const [destination, setDestination] = useState('');
-  const [sendDate, setSendDate] = useState('');
-  const [sendHour, setSendHour] = useState('');
-  const [prevArrivalDate, setprevArrivalDate] = useState('');
-  const [prevArrivalHour, setprevArrivalHour] = useState('');
-  const [arrivalDate, setArrivalDate] = useState('');
-  const [arrivalHour, setArrivalHour]= useState('');
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+const Form = ({ onAddOrder }) => {
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [sendDate, setSendDate] = useState("");
+  const [sendHour, setSendHour] = useState("");
+  const [prevArrivalDate, setprevArrivalDate] = useState("");
+  const [prevArrivalHour, setprevArrivalHour] = useState("");
+  const [arrivalDate, setArrivalDate] = useState("");
+  const [arrivalHour, setArrivalHour] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [sentAutocomplete, setSentAutocomplete] = useState(null);
+  const [arrivalAutocomplete, setArrivalAutocomplete] = useState(null);
+  // For more info on the options allowed for fields (to be returned and billed by Google Maps), please refer to the following link
+  // https://developers.google.com/maps/documentation/javascript/reference/places-service?hl=pt-br#PlaceResult
+  const autocompleteOptions = {
+    'fields':['formatted_address']
+  }
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
+  });
+
+  
+  const onSentAutocompleteLoad = (autocomplete)=> {
+
+    setSentAutocomplete(autocomplete) // setAutocompleteresults
+  }
+
+  const onArrivalAutocompleteLoad = (autocomplete)=> {
+
+    setArrivalAutocomplete(autocomplete)
+  }
 
 
-  // useEffect(() => {
-  //   const fetchClients = async () => {
-  //     try {
-  //       // Fetch clients from local storage or API
-  //       // For simplicity, I'll assume clients are stored in local storage using localforage
-  //       const clientKeys = await localforage.keys();
-  //       const clientDetails = await Promise.all(clientKeys.map(key => localforage.getItem(key)));
-  //       // Filter out any null or undefined client details
-  //       const filteredClients = clientDetails.filter(client => client);
-  //       setClient(filteredClients);
-  //     } catch (error) {
-  //       console.error('Error fetching clients:', error);
-  //     }
-  //   };
 
-  //   fetchClients();
-  // }, [client]);
+  const onSentPlaceChange = () => {
+    if (sentAutocomplete!== null) {
+    
+      setOrigin(sentAutocomplete.getPlace().formatted_address) //set origin to autocomplete result
+    } else {
+      console.log('Autocomplete is not loaded yet!')
+    }
+  }
+
+  const onArrivalPlaceChange = () => {
+    if (arrivalAutocomplete!== null) {
+      setDestination(arrivalAutocomplete.getPlace().formatted_address)
+    } else {
+      console.log('Autocomplete is not loaded yet!')
+    }
+  }
+
+
+  
+  
 
   const handleSubmit = async (e) => {
-
-    e.preventDefault();//prevent reload page when sendind form
+    e.preventDefault(); //prevent reload page when sendind form
 
     //generate primary key to be unique
     const orderId = uuidv4();
@@ -55,9 +82,10 @@ const Form = ({onAddOrder}) => {
       arrivalHour,
       arrivalDate,
       fullname,
-      email, 
-      phone
+      email,
+      phone,
     };
+
 
     // Save the order to local storage using LocalForage
     await localforage.setItem(orderId, newOrder);
@@ -66,131 +94,133 @@ const Form = ({onAddOrder}) => {
     onAddOrder(newOrder);
 
     // Clear the form fields
-    setOrigin('');
-    setDestination('');
-    setSendDate('');
-    setSendHour('');
-    setprevArrivalDate('');
-    setprevArrivalHour('');
-    setArrivalDate('');
-    setArrivalHour('');
-    setFullname('')
-    setEmail('')
-    setPhone('')
+    setOrigin("");
+    setDestination("");
+    setSendDate("");
+    setSendHour("");
+    setprevArrivalDate("");
+    setprevArrivalHour("");
+    setArrivalDate("");
+    setArrivalHour("");
+    setFullname("");
+    setEmail("");
+    setPhone("");
   };
 
   return (
-    <section className='formContainer'>
-    <form className='form' onSubmit={handleSubmit}>
-      <h1 className='formTitle'>Adicionar Pedido</h1>
-      <label className='formLabel'>
-        Origem:
-        <input
-          className='inputForm'
-          type="text"
-          value={origin}
-          onChange={(e) => setOrigin(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Destino:
-        <input
-          className='inputForm'
-          type="text"
-          value={destination}
-          onChange={(e) => setDestination(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Dia do envio:
-        <input
-          className='inputForm'
-          type="date"
-          value={sendDate}
-          onChange={(e) => setSendDate(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Hora do envio:
-        <input
-          className='inputForm'
-          type="time"
-          value={sendHour}
-          onChange={(e) => setSendHour(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Data de previsão de chegada:
-        <input
-          className='inputForm'
-          type="date"
-          value={prevArrivalDate}
-          onChange={(e) => setprevArrivalDate(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Hora de previsão de chegada:
-        <input
-          className='inputForm'
-          type="time"
-          value={prevArrivalHour}
-          onChange={(e) => setprevArrivalHour(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Data de chegada
-        <input
-          className='inputForm'
-          type="date"
-          value={arrivalDate}
-          onChange={(e) => setArrivalDate(e.target.value)}
-        />
-      </label>
-      <label className='formLabel'>
-        Hora de chegada
+    <section className="formContainer">
+      <form className="form" onSubmit={handleSubmit}>
+        <h1 className="formTitle">Adicionar Pedido</h1>
+        <label className="formLabel">
+          Origem:
+          {isLoaded && (<Autocomplete
+          onPlaceChanged={onSentPlaceChange}
+          options={autocompleteOptions}
+          onLoad={onSentAutocompleteLoad}
+          >
+          <input
+            placeholder="Endereço de Envio"
+            className="inputForm"
+            type="text"
+          />
+          </Autocomplete>)}
         </label>
+        <label className="formLabel">
+          Destino:
+          {isLoaded && (<Autocomplete
+          options={autocompleteOptions}
+          onPlaceChanged={onArrivalPlaceChange}
+          onLoad={onArrivalAutocompleteLoad}
+          >
+          <input
+            placeholder="Endereço de Entrega"
+            className="inputForm"
+            type="text"
+          />
+          </Autocomplete>)}
+        </label>
+        <label className="formLabel">
+          Dia do envio:
+          <input
+            className="inputForm"
+            type="date"
+            value={sendDate}
+            onChange={(e) => setSendDate(e.target.value)}
+          />
+        </label>
+        <label className="formLabel">
+          Hora do envio:
+          <input
+            className="inputForm"
+            type="time"
+            value={sendHour}
+            onChange={(e) => setSendHour(e.target.value)}
+          />
+        </label>
+        <label className="formLabel">
+          Data de previsão de chegada:
+          <input
+            className="inputForm"
+            type="date"
+            value={prevArrivalDate}
+            onChange={(e) => setprevArrivalDate(e.target.value)}
+          />
+        </label>
+        <label className="formLabel">
+          Hora de previsão de chegada:
+          <input
+            className="inputForm"
+            type="time"
+            value={prevArrivalHour}
+            onChange={(e) => setprevArrivalHour(e.target.value)}
+          />
+        </label>
+        <label className="formLabel">
+          Data de chegada
+          <input
+            className="inputForm"
+            type="date"
+            value={arrivalDate}
+            onChange={(e) => setArrivalDate(e.target.value)}
+          />
+        </label>
+        <label className="formLabel">Hora de chegada</label>
         <input
-          className='inputForm'
+          className="inputForm"
           type="time"
           value={arrivalHour}
           onChange={(e) => setArrivalHour(e.target.value)}
         />
-    
-      <label className='formLabel'>Nome do cliente:</label>
-      <input
-          className='inputForm'
+
+        <label className="formLabel">Nome do cliente:</label>
+        <input
+          className="inputForm"
+          placeholder="Nome Completo"
           type="text"
           value={fullname}
           onChange={(e) => setFullname(e.target.value)}
         />
-        <label className='formLabel'>Email do cliente:</label>
+        <label className="formLabel">Email do cliente:</label>
         <input
-          className='inputForm'
+          className="inputForm"
+          placeholder="E-mail"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label className='formLabel'>Telefone do cliente:</label>
+        <label className="formLabel">Telefone do cliente:</label>
         <input
-          className='inputForm'
+          className="inputForm"
+          placeholder="Telefone"
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
-      {/* <label> */}
-        {/* Cliente: */}
-        {/* <select */}
-          {/* value={selectedClient} */}
-          {/* onChange={(e) => setSelectedClient(e.target.value)} */}
-        {/* > */}
-          {/* <option value="">Select Client</option> */}
-          {/* {client.map(client => ( */}
-            {/* <option key={client._id} value={client._id}>{client.fullname}</option> */}
-          {/* ))} */}
-        {/* </select> */}
-      {/* </label> */}
-      <button className='formBtn' type="submit">Criar Pedido</button>
-    </form>
+
+        <button  className="formBtn" type="submit">
+          Criar Pedido
+        </button>
+      </form>
     </section>
   );
 };
