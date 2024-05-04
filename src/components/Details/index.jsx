@@ -18,7 +18,8 @@ const Details = ( ) => {
       try {
         // Fetch order details
         const orderDetails = await localforage.getItem(orderId);
-        setOrder(orderDetails);        
+        setOrder(orderDetails);     
+        console.log(order.fullname)   
       } catch (error) {
         console.error('Error fetching order and client details:', error);
       }
@@ -34,30 +35,30 @@ const Details = ( ) => {
   return (
     < >
         {order ? ( 
-       <div>
-        <header key={order.id} className="detailsContainer">
+       <div className='detailsContainer'>
+        <header key={order.id} className="detailsHeader">
          <Link to={`/`}>
          <img role='button' className="backVector" src={arrowVector} alt="Back to homepage"/>
        </Link>
-      <p>Pedido {order.id}</p>
+      <p className='orderTitle'>Pedido {order.id}</p>
      </header> 
     <main className='mapContainer'>
      <Map sentFromAddress={'1900 Amphitheatre Parkway, Mountain View, CA'}  receivedAtAddress={'1700 Charleston Road, Mountain View, CA'}/>
      </main>
-        <section>
+        <section className='sectionDetails'>
           <div className='parent'>
             <div className='column1'>
               <div className='square'><img className='vector' src={carVector} alt="Car vector"/></div>
               <div className='square'><img className='vector' src={flagVector} alt="Flag vector"/></div>
             </div>
             <div className='column2'>
-              <p className='routeText'>Saindo em {order.sentFromAddress}</p><p>{order.sendDate} as {order.sendHour}</p>
-              <p className='routeText'>Chegando em {order.receivedAtAddress}</p><p>{order.prevArrivalDate} as {order.prevArrivalHour}</p>
+              <p className='routeText'>Saindo em '1900 Amphitheatre Parkway, Mountain View, CA'</p><p className='dateText'>{order.sendDate} as {order.sendHour}</p>
+              <p className='routeText'>Chegando em '1700 Charleston Road, Mountain View, CA'</p><p className='dateText'>{order.prevArrivalDate} as {order.prevArrivalHour}</p>
             </div>
           </div>
-          <p className='detailSection'>Pedido</p>
+          <p className='detailLabel'>Pedido</p>
           <p className='orderTitle'>{order.id}</p>
-          <p className='detailSection'>Cliente</p>
+          <p className='detailLabel'>Cliente</p>
           <p>{order.fullname}</p>
           <p>{order.email}</p>
           <p>{order.phone}</p>

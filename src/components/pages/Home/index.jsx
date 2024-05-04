@@ -47,7 +47,6 @@ const HomePage = ( ) => {
 
 
     return (
-        
         <div>
         <header className="container">
             <img className="logo" src={logo} alt="naPorta"/>
@@ -60,8 +59,6 @@ const HomePage = ( ) => {
         <List orders={orders} />
              
         </main>
-        {/* <OrderForm onAddOrder={addOrder} /> */}
-        {/* <ClientForm onAddClient={addClient} /> */}
         </div>
         
     );

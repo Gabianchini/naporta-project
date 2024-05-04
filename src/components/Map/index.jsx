@@ -73,10 +73,10 @@ function Map({sentFromAddress,receivedAtAddress}) {
   // }, [sentFromPosition]);
 
   return (
-    
       <div className="Mapcomp" ref={mapContainer}>
         {sentFromPosition && receivedAtPosition && isLoaded && !loadError ? (
           // Render map only if Google Maps API is loaded and there is no error
+          
           <GoogleMap
             mapContainerStyle={{ width: "100%", height: "100%" }}
             center={center}
@@ -114,10 +114,10 @@ function Map({sentFromAddress,receivedAtAddress}) {
           }
             
           </GoogleMap>
+         
         ) : (
           <span>Error loading map</span>
         )}
-
       </div>
   
   );
