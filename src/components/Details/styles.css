@@ -65,3 +65,7 @@
     height: 150px;
     background-color: #f6984a;
 }
+
+.mapContainer{
+    width: 100%;
+}

@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import localforage from 'localforage';
+import './styles.css'
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -79,85 +80,99 @@ const Form = ({onAddOrder}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <section className='formContainer'>
+    <form className='form' onSubmit={handleSubmit}>
+      <h1 className='formTitle'>Adicionar Pedido</h1>
+      <label className='formLabel'>
         Origem:
         <input
+          className='inputForm'
           type="text"
           value={origin}
           onChange={(e) => setOrigin(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Destino:
         <input
+          className='inputForm'
           type="text"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Dia do envio:
         <input
+          className='inputForm'
           type="date"
           value={sendDate}
           onChange={(e) => setSendDate(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Hora do envio:
         <input
+          className='inputForm'
           type="time"
           value={sendHour}
           onChange={(e) => setSendHour(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Data de previsão de chegada:
         <input
+          className='inputForm'
           type="date"
           value={prevArrivalDate}
           onChange={(e) => setprevArrivalDate(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Hora de previsão de chegada:
         <input
+          className='inputForm'
           type="time"
           value={prevArrivalHour}
           onChange={(e) => setprevArrivalHour(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Data de chegada
         <input
+          className='inputForm'
           type="date"
           value={arrivalDate}
           onChange={(e) => setArrivalDate(e.target.value)}
         />
       </label>
-      <label>
+      <label className='formLabel'>
         Hora de chegada
+        </label>
         <input
+          className='inputForm'
           type="time"
           value={arrivalHour}
           onChange={(e) => setArrivalHour(e.target.value)}
         />
-      </label>
-      <label>Nome do cliente:</label>
+    
+      <label className='formLabel'>Nome do cliente:</label>
       <input
+          className='inputForm'
           type="text"
           value={fullname}
           onChange={(e) => setFullname(e.target.value)}
         />
-        <label>Email do cliente:</label>
+        <label className='formLabel'>Email do cliente:</label>
         <input
+          className='inputForm'
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label>Telefone do cliente:</label>
+        <label className='formLabel'>Telefone do cliente:</label>
         <input
+          className='inputForm'
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
@@ -174,8 +189,9 @@ const Form = ({onAddOrder}) => {
           {/* ))} */}
         {/* </select> */}
       {/* </label> */}
-      <button type="submit">Submit</button>
+      <button className='formBtn' type="submit">Criar Pedido</button>
     </form>
+    </section>
   );
 };
 
