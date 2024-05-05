@@ -1,27 +1,34 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import "./styles.css";
 import {
   useJsApiLoader,
   GoogleMap,
   Marker,
-  Autocomplete
+  DirectionsService,
+  DirectionsRenderer,
 } from "@react-google-maps/api";
 
-const center = { lat: 37.422355, lng: -122.0843435 }; // Center of the map
+
 
 
 function Map({sentFromAddress,receivedAtAddress}) {
+  const mapContainer = React.useRef(null);
   const [map, setMap] = useState(null);
+  const [response, setResponse] = useState(null);
+  const [directionsServiceOptions, setDirectionsServiceOptions] = useState(null);
+  const [center,setCenter] = useState({});
+  const directionsResult = {
+    directions: response,
+    suppressMarkers: true,
+  };
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ["places"], //places api needed to autocomplete and routes/directions
   });
-
   const [sentFromPosition, setSentFromPosition] = useState(null);
   const [receivedAtPosition, setReceivedAtPosition] = useState(null);
 
-
-
+  
   useEffect(() => {
     if (isLoaded && !loadError) {// If google map api is loaded load geocode
       const geocodeAddress = (address, setPosition) => {
@@ -43,16 +50,56 @@ function Map({sentFromAddress,receivedAtAddress}) {
           }
         });
       };
-      geocodeAddress(sentFromAddress, setSentFromPosition);
-     
-      geocodeAddress(receivedAtAddress, setReceivedAtPosition);
+      if(addressNotEmpty(sentFromAddress) && addressNotEmpty(receivedAtAddress)){
+        geocodeAddress(sentFromAddress, setSentFromPosition);
+      
+        geocodeAddress(receivedAtAddress, setReceivedAtPosition);
+      }
     }
   }, [isLoaded, loadError]);
 
 
-  const mapContainer = React.useRef(null);
+  useEffect(() => {
+    if (sentFromPosition && receivedAtPosition && !directionsServiceOptions && isLoaded && !loadError) {
+      setDirectionsServiceOptions({
+        destination: receivedAtPosition,
+        origin: sentFromPosition,
+        travelMode: window.google.maps.TravelMode.DRIVING,
+      });
+    }
+  }, [sentFromPosition, receivedAtPosition, directionsServiceOptions]);
 
+  useEffect(() => {
+    setCenter(sentFromPosition);
+  }, [sentFromPosition])
 
+  const addressNotEmpty = (address) => {
+    if(typeof address === "string" && address.length > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  // Leveraging the example from this library's main documentation:
+  // https://github.com/JustFly1984/react-google-maps-api/blob/develop/packages/react-google-maps-api/src/components/directions/DirectionsRenderer.md
+
+  const directionsCallback = useCallback(
+    (
+      result,
+      status,
+    ) => {
+      if (result !== null) {
+        if (status === 'OK') {
+          setResponse(result);
+        } else {
+          console.log('response: ', result);
+        }
+      }
+    },
+    []
+  );
+  
   return (
       <div className="Mapcomp" ref={mapContainer}>
         {sentFromPosition && receivedAtPosition && isLoaded && !loadError ? (
@@ -91,11 +138,28 @@ function Map({sentFromAddress,receivedAtAddress}) {
             }}
           />
           }
+
+
+          {directionsServiceOptions && (
+              <DirectionsService
+                // required
+                options={directionsServiceOptions}
+                // required
+                callback={directionsCallback}
+              />
+            )}
+
+          {directionsResult.directions && (
+            <DirectionsRenderer
+              // required
+              options={directionsResult}
+            />
+          )}
             
           </GoogleMap>
          
         ) : (
-          <span>Loading...</span>
+          <div></div>
         )}
       </div>
   
