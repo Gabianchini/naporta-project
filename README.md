@@ -26,26 +26,47 @@ React Hot Toast: A lightweight toast library for React applications, allowing ea
 -  **Order details page:** Contains details of the selected order. The information shown is: map, order shipping and arrival time and date, customer information.    
 
 ## Run Locally  
-Clone the project  
+* Clone the project  
 
 ~~~bash  
-  git clone https://link-to-project
+  git clone https://github.com/Gabianchini/naporta-project/
 ~~~
 
-Go to the project directory  
+* Go to the project directory  
 
 ~~~bash  
-  cd my-project
+  cd naporta-project
 ~~~
 
-Install dependencies  
+* Install dependencies  
 
 ~~~bash  
 npm install
 ~~~
 
-Start the server  
+* Configure settings in Google Maps Platform:
+
+* 1:  Access with you google account the link to Google Maps Platform: [Google Maps Platform Link](https://console.cloud.google.com/google/maps-apis/home?project=inlaid-lane-422217-d3&hl=pt-br)
+
+* 2:  Select Select Project tab and Create a new project.
+
+* 3:  Go to API and Services section and select enables in the following APIS: Maps JavaScript API, Geocoding API, Places API, Places API (New), Directions API,  Routes API, Distance Matrix API.
+
+* 4:  Navigate to Credentials and keys tab.
+
+* 5:  Select Create Credentials and copy your apiKey created.
+
+* 6:  In the same section select Api Keys > Actions > Edit Key
+
+* 7:  Enable the restrict api checkbox in Api Key restrictions, then in the dropdown menu select the apis: Maps JavaScript API, Geocoding API,Places API, Directions API, Distance Matrix API, Routes API. Save the changes.
+
+* 8:  In the code replace process.env.REACT_APP_GOOGLE_MAPS_API_KEY for your API key.
+
+* Start the server  
 
 ~~~bash  
 npm run start
-~~~  
+~~~
+<br>
+
+## Explore the project and feel free to collaborate! :rocket:
