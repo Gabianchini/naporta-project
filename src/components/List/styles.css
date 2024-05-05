@@ -14,6 +14,7 @@
 
 .idList{
     font-size: 16px;
+    text-align: center;
     font-family: "Inter";
 }
 
@@ -29,6 +30,10 @@
 
 .item{
     background-color: #FFFFFF;
+    display: flex;
+    margin:15px;
+    border-radius: 10px;
+    justify-content: center;
     list-style-type: none;
     list-style: none;
     width: 400px;

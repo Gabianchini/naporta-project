@@ -14,10 +14,11 @@ const Details = ( ) => {
   const url = window.location.pathname.split('/');//split url with /
   const orderId = url[url.length-1]; // get the right url
 
+
+  // Fetch order details
   useEffect(() => {
     const fetchOrder = async (orderId) => {
       try {
-        // Fetch order details
         const orderDetails = await localforage.getItem(orderId);
         setOrder(orderDetails);     
       } catch (error) {
@@ -29,18 +30,16 @@ const Details = ( ) => {
   }, [orderId]); 
 
 
-
-
-
   return (
     < >
-        {order ? ( 
+       {/*Get order info if order exist*/}
+        {order ? (  
        <div className='detailsContainer'>
         <header key={order.id} className="detailsHeader">
          <Link to={`/`}>
          <img role='button' className="backVector" src={arrowVector} alt="Back to homepage"/>
        </Link>
-      <p className='orderTitle'>Pedido {order.id}</p>
+      <p className='orderTitle'>Pedido {order.id.substring(0, 5)}</p>
      </header> 
     <main className='mapContainer'>
      <Map sentFromAddress={order.origin}  receivedAtAddress={order.destination}/>
@@ -49,8 +48,8 @@ const Details = ( ) => {
           <div className='routeDescription'>
             <img className='line'src={line}></img>
             <div className='columnSendto'>
-              <div className='square'><img className='vector' src={carVector} alt="Car vector"/></div>
-              <div className='square'><img className='vector' src={flagVector} alt="Flag vector"/></div>
+              <div className='vectorBackground'><img className='vector' src={carVector} alt="origin marker"/></div>
+              <div className='vectorBackground'><img className='vector' src={flagVector} alt="destination marker"/></div>
             </div>
             <div className='columnReceveidto'>
               <p className='routeText'>Saindo em {order.origin}</p><p className='dateText'>{order.sendDate} as {order.sendHour}</p>

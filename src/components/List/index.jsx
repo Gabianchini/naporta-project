@@ -12,7 +12,7 @@ const List = ({ orders }) => {
         {orders.map((order, index) => (
           <li className='item' key={order.id}>
             <Link to={`/order/${order.id}`} className='orderLink'>
-            <p className='idList'>{order.id}</p> 
+            <p className='idList'>{order.id.substring(0, 5)}</p> {/* Get only first 5 chars */}
             <p className='descList'>{`Previsão de entrega em ${order.prevArrivalDate} as ${order.prevArrivalHour}`}</p>
             </Link>
           </li>

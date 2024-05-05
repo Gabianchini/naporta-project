@@ -2,14 +2,11 @@ import React from "react";
 import Details from "../../Details";
 
 const OrderDetailsPage = () => {
-
-
-
-    return(
-        <div>
-        <Details/>
-      </div>
-    )
-}
+  return (
+    <>
+      <Details />
+    </>
+  );
+};
 
 export default OrderDetailsPage;

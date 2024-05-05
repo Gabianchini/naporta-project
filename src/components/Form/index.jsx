@@ -33,22 +33,22 @@ const Form = ({ onAddOrder }) => {
   });
 
   const onSentAutocompleteLoad = (autocomplete) => {
-    setSentAutocomplete(autocomplete); // setAutocompleteresults
+    setSentAutocomplete(autocomplete); // Set origin address autocomplete results
   };
 
   const onArrivalAutocompleteLoad = (autocomplete) => {
-    setArrivalAutocomplete(autocomplete);
+    setArrivalAutocomplete(autocomplete); // Set destination address autocomplete results
   };
 
-  const onSentPlaceChange = () => {
+  const onSentPlaceChange = () => { //Manage change in autocomplete origin field
     if (sentAutocomplete !== null) {
-      setOrigin(sentAutocomplete.getPlace().formatted_address); //set origin to autocomplete result
+      setOrigin(sentAutocomplete.getPlace().formatted_address); 
     } else {
       console.log("Autocomplete is not loaded yet!");
     }
   };
 
-  const onArrivalPlaceChange = () => {
+  const onArrivalPlaceChange = () => {//Manage change in autocomplete destination field
     if (arrivalAutocomplete !== null) {
       setDestination(arrivalAutocomplete.getPlace().formatted_address);
     } else {
@@ -57,9 +57,9 @@ const Form = ({ onAddOrder }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //prevent reload page when sendind form
+    e.preventDefault(); //Prevent reload page when sendind form
 
-    //generate primary key to be unique
+    //Generate primary key to be unique
     const orderId = uuidv4();
 
     // Create a new order object
@@ -83,6 +83,7 @@ const Form = ({ onAddOrder }) => {
 
     // Call the onAddOrder function passed from the parent component
     onAddOrder(newOrder);
+    
     toast.success("Novo pedido criado com sucesso")
 
     // Clear the form fields
@@ -99,13 +100,12 @@ const Form = ({ onAddOrder }) => {
     setPhone("");
   };
 
-  return (
-      
+  return (    
       <section className="formContainer">
         <form className="form" onSubmit={handleSubmit}>
           <h1 className="formTitle">
         <Link to={'/'}>
-        <img className="backBtn" role="button" aria-label="Back to Homepage" src={backVector}></img>
+        <img className="backBtn" role="button" alt="Back to Homepage" tabIndex="0" src={backVector}></img>
         </Link>
         Adicionar Pedido</h1>
           <label className="formLabel">
