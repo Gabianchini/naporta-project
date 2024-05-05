@@ -1,5 +1,6 @@
 .formContainer{
 display: flex;
+width: 100%;
 justify-content: center;
 background-color:#F6984A
 
@@ -8,12 +9,14 @@ background-color:#F6984A
 
 .formTitle{
  display: flex;
+ font-size: 32px;
  justify-content: center;
 }
 
 
 .form {
-    max-width: 320px;
+    min-width: 40%;
+    max-width: 350px;
     margin: 0 auto;
     padding: 50px;
     background-color: #F9F9F9;
@@ -32,12 +35,16 @@ background-color:#F6984A
  .inputForm{
     display: flex;
     justify-content: center;
-    width: 80%;
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+
+  .inputAddress{
+    width: 100%;
   }
   
   .formBtn {
@@ -49,6 +56,16 @@ background-color:#F6984A
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+
+  .backBtn{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right:20px;
+   
+    
+
   }
   
   /* Media query for larger screens */

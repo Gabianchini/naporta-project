@@ -18,29 +18,40 @@
 .route{
     column-count: 2;
 }
-.parent{
+.routeDescription{
     margin-top:30px;
     display: flex;
+    justify-content: center;
     
 }
-.column1 {
+.columnSendto {
     display: flex;
     flex-direction:column ;
     width:55px;
     margin-left:10px;
-    margin-top:15px;
+    margin-top:30px;
     
 
 }
 
-.column2 {
-    width:400px;
+.columnReceveidto {
+    width:230px;
 
 
 }
 
+.line{
+    width:3px;
+    height:70px;
+    position: relative;
+    top:70px;
+    z-index: -1;
+    left: 35px;
+}
+
 .routeText{
     font-size:16px;
+    margin-bottom: 8px;
 
 }
 
@@ -63,8 +74,8 @@
 }
 
 .backVector{
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
 
 }
 
@@ -80,16 +91,21 @@
 .detailsContainer{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    
 }
 
 .sectionDetails{
     position: relative;
-    top:250px;
+    top:300px;
+    align-items: center;
+    
     
 }
 
 .mapContainer{
     width: 100%;
+    
 }
 .sectionDetails{
     display: flex;

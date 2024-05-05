@@ -1,10 +1,11 @@
 import HomePage from './components/pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import OrderDetailsPage from './components/pages/OrdersDetails';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
-import Form from './components/Form';
 import { useState } from 'react';
 import AddOrderPage from './components/pages/AddOrder';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   };
 
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<HomePage/>} />
@@ -29,6 +31,9 @@ function App() {
         <Route path="/addorder" element={<AddOrderPage/>}/>
       </Routes>
     </Router>
+    <Toaster/>
+   </>
+    
   );
 };
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect  } from 'react';
 import localforage from 'localforage';
 import carVector from "../../assets/car-vector.png"
 import flagVector from '../../assets/flag-vector.png'
-import arrowVector from '../../assets/arrow-vector.png'
+import arrowVector from '../../assets/back-vector.png'
+import line from '../../assets/line-vector.png'
 import { Link } from 'react-router-dom';
 import Map from '../Map';
 import './styles.css'
@@ -45,12 +46,13 @@ const Details = ( ) => {
      <Map sentFromAddress={order.origin}  receivedAtAddress={order.destination}/>
      </main>
         <section className='sectionDetails'>
-          <div className='parent'>
-            <div className='column1'>
+          <div className='routeDescription'>
+            <img className='line'src={line}></img>
+            <div className='columnSendto'>
               <div className='square'><img className='vector' src={carVector} alt="Car vector"/></div>
               <div className='square'><img className='vector' src={flagVector} alt="Flag vector"/></div>
             </div>
-            <div className='column2'>
+            <div className='columnReceveidto'>
               <p className='routeText'>Saindo em {order.origin}</p><p className='dateText'>{order.sendDate} as {order.sendHour}</p>
               <p className='routeText'>Chegando em {order.destination}</p><p className='dateText'>{order.prevArrivalDate} as {order.prevArrivalHour}</p>
             </div>

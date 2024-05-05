@@ -4,6 +4,7 @@ import './styles.css'
 import { Link } from 'react-router-dom';
 
 const List = ({ orders }) => {
+ 
   return (
     <div className='listContainer'>
       <h2 className='listTitle'>Pedidos</h2> 
