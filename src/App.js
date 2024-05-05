@@ -1,7 +1,6 @@
 import HomePage from './components/pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import OrderDetailsPage from './components/pages/OrdersDetails';
-import { ToastContainer } from 'react-toastify';
 import './App.css';
 import { useState } from 'react';
 import AddOrderPage from './components/pages/AddOrder';
