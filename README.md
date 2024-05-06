@@ -21,6 +21,8 @@ Utilized for Offline-First Data Storage: Local Forage API was used to implement 
 **React Hot Toast:**
 <br>
 React Hot Toast: A lightweight toast library for React applications, allowing easy display of notification messages.
+
+**Jest:** Jest is a JavaScript testing framework designed to ensure correctness of any JavaScript codebase. It allows you to write tests with an approachable, familiar and feature-rich API that gives you results quickly. Jest is well-documented, requires little configuration and can be extended to match your requirements. In this project jest was used to test the component form.
  
 ## Features  
 -  **HomePage:** Displays the project's main page, which contains a list of orders.
@@ -89,6 +91,14 @@ REACT_APP_GOOGLE_MAPS_API_KEY=Paste_your_Apikey
 ~~~bash  
 npm run start
 ~~~
+<br>
+
+## To Test:
+
+~~~bash  
+npm run test
+~~~
+* press A to run all tests
 <br>
 
 ## Explore the project and feel free to collaborate! :rocket:
