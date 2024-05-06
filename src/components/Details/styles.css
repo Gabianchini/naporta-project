@@ -20,6 +20,7 @@
 }
 .routeDescription{
     margin-top:30px;
+    padding: 30px;
     display: flex;
     justify-content: center;
     
@@ -64,6 +65,7 @@
     font-size:30px;
     font-weight: 700;
     margin-right:30px;
+    margin-left: 20px;
 }
 
 .detailLabel{
@@ -71,6 +73,7 @@
     color: #8D8D99;
     font-weight: 400;
     display: flex;
+    margin-left: 20px;
 }
 
 .backVector{
@@ -100,15 +103,27 @@
     top:300px;
     align-items: center;
     
-    
 }
+
+@media (max-width:1025px) {
+     /* big landscape tablets, laptops, and desktops */ 
+     .sectionDetails{
+        top:350px;
+        
+        
+    }
+    }
+
+
+    
 
 .mapContainer{
     width: 100%;
     
 }
-.sectionDetails{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+
+.clientDetails{
+    text-align: start;
+    margin-left: 20px;
 }

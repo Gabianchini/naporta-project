@@ -39,7 +39,7 @@ const Details = ( ) => {
          <Link to={`/`}>
          <img role='button' className="backVector" src={arrowVector} alt="Back to homepage"/>
        </Link>
-      <p className='orderTitle'>Pedido {order.id.substring(0, 5)}</p>
+      <p className='orderTitle'>Pedido {order.id.substring(0, 5).toUpperCase()}</p>
      </header> 
     <main className='mapContainer'>
      <Map sentFromAddress={order.origin}  receivedAtAddress={order.destination}/>
@@ -57,12 +57,14 @@ const Details = ( ) => {
             </div>
             
           </div>
+          
           <p className='detailLabel'>Pedido</p>
-          <p className='orderTitle'>{order.id}</p>
+          <p className='orderTitle'>{order.id.substring(0, 5).toUpperCase()}</p>
           <p className='detailLabel'>Cliente</p>
-          <p>{order.fullname}</p>
-          <p>{order.email}</p>
-          <p>{order.phone}</p>
+          <p className='clientDetails'>{order.fullname}</p>
+          <p className='clientDetails'>{order.email}</p>
+          <p className='clientDetails'>{order.phone}</p>
+          
         </section>
         </div>
       ): <p>Sem detalhes do pedido</p>}
