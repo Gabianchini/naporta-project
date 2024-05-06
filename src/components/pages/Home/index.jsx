@@ -4,8 +4,7 @@ import "./styles.css";
 import logo from "../../../assets/naporta-logo.png";
 import Button from "../../Button";
 import List from "../../List";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 

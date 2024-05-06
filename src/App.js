@@ -8,18 +8,8 @@ import { Toaster } from 'react-hot-toast';
 
 
 function App() {
-  const [orders, setOrders] = useState([]);
-  const [clients, setClients] = useState([])
 
   
-  const addOrder = (newOrder) => {
-    setOrders([...orders, newOrder]);
-
-  };
-
-  const addClient = (newClient) => {
-    setClients(existingClients => [...existingClients, newClient]);
-  };
 
   return (
     <>

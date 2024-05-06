@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import localforage from "localforage";
 import "./styles.css";
 import { v4 as uuidv4 } from "uuid";
@@ -61,6 +61,8 @@ const Form = ({ onAddOrder }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //Prevent reload page when sendind form
+
+    
 
     //Generate primary key to be unique
     const orderId = uuidv4();
