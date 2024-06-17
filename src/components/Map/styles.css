@@ -10,7 +10,7 @@
     height: 40%;
 }
 
-@media (max-width:344px) {
+@media (max-width:200px) {
     .Mapcomp{
          height: 50%;
     }
@@ -26,10 +26,43 @@
 
 @media (min-width:760px) {
     .Mapcomp{
-         height: 30%;
+         height: 25%;
     }
 
+
+    
 }
+
+
+@media (min-width:1000px) {
+    .Mapcomp{
+         height: 28%;
+    }
+
+
+    
+}
+
+@media (min-width:1000px) {
+    .Mapcomp{
+         height: 28%;
+    }
+
+
+    
+}
+
+
+@media (min-width:1200px) {
+    .Mapcomp{
+         height: 28%;
+    }
+
+
+    
+}
+
+
 
 
 

@@ -19,10 +19,11 @@
     column-count: 2;
 }
 .routeDescription{
-    margin-top:30px;
+    /* margin-top:30px; */
     padding: 30px;
     display: flex;
     justify-content: center;
+   
     
 }
 .columnSendto {
@@ -52,7 +53,7 @@
 
 .routeText{
     font-size:16px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 
 }
 
@@ -87,7 +88,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 150px;
+    height: 180px;
     background-color: #f6984a;
 }
 
@@ -100,7 +101,7 @@
 
 .sectionDetails{
     position: relative;
-    top:300px;
+    top:200px;
     align-items: center;
     
 }
