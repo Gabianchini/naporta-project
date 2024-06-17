@@ -101,4 +101,14 @@ npm run test
 * press A to run all tests
 <br>
 
+## Take a look:
+<br>
+
+Add order to list | Order data and map
+:-: | :-:
+<img src='https://github.com/Gabianchini/naporta-project/blob/master/add-order.gif' width=250 /> | <img src='https://github.com/Gabianchini/naporta-project/blob/master/order-info.gif' width=250 />
+
+<br>
+
+
 ## Explore the project and feel free to collaborate! :rocket:
