@@ -1,5 +1,5 @@
 .container{
-    background-color: #f6984a;
+    background-color:lightskyblue;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -15,5 +15,25 @@
 
 .btnHome{
     padding-right: 30px;
+}
+
+.headerTitle{
+    display: flex;
+    align-items: center;
+    margin-left:20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.title{
+    padding:2px;
+}
+
+.sectionDetails{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 

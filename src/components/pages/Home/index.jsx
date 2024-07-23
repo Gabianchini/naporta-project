@@ -1,7 +1,7 @@
 import React from "react";
 import localforage from "localforage";
 import "./styles.css";
-import logo from "../../../assets/naporta-logo.png";
+import logo from "../../../assets/caminhao.png";
 import Button from "../../Button";
 import List from "../../List";
 import { useEffect, useState } from "react";
@@ -33,10 +33,15 @@ const HomePage = () => {
   return (
     <>
       <header className="container">
+      <div className="headerTitle">
         <img className="logo" src={logo} alt="naPorta" />
+        <span className='title'>FAST DELIVERY</span>
+        </div>
+        <div>
         <Link to={`/addorder`}>
           <Button text="Novo pedido" />
         </Link>
+        </div>
       </header>
       <main className="list">
         <List orders={orders} />

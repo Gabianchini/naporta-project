@@ -38,6 +38,7 @@ const Details = ( ) => {
         <header key={order.id} className="detailsHeader">
          <Link to={`/`}>
          <img role='button' className="backVector" src={arrowVector} alt="Back to homepage"/>
+        
        </Link>
       <p className='orderTitle'>Pedido {order.id.substring(0, 5).toUpperCase()}</p>
      </header> 
@@ -58,16 +59,21 @@ const Details = ( ) => {
             
           </div>
           
-          <p className='detailLabel'>Pedido</p>
-          <p className='orderTitle'>{order.id.substring(0, 5).toUpperCase()}</p>
-          <p className='detailLabel'>Cliente</p>
-          <p className='clientDetails'>{order.fullname}</p>
-          <p className='clientDetails'>{order.email}</p>
-          <p className='clientDetails'>{order.phone}</p>
-          
+          <div className='clientContainer'>
+          <p className='detailLabel'>Pedido
+          <span className='orderTitle'>{order.id.substring(0, 5).toUpperCase()}</span></p>
+          <p className='detailClient'>Cliente</p>
+          <div className='detailsContainer'>
+          <p className='clientDetails'><span className='details'>Nome:</span>{order.fullname}</p>
+          <p className='clientDetails'><span className='details' >Email:</span>{order.email}</p>
+          <p className='clientDetails'><span className='details'>Telefone:</span>{order.phone}</p>
+          </div>
+          </div>
         </section>
         </div>
+        
       ): <p>Sem detalhes do pedido</p>}
+      
     </> 
   );
 }

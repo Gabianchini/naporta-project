@@ -122,7 +122,7 @@ function Map({ sentFromAddress, receivedAtAddress }) {
               position={sentFromPosition}
               map={map}
               icon={{
-                url: "https://i.ibb.co/XFVxY1P/car-icon-map.png",
+                url: "https://i.ibb.co/JBFR3Wn/car-blue.png",
                 scaledSize: new window.google.maps.Size(40, 40),
               }}
             />
@@ -132,7 +132,7 @@ function Map({ sentFromAddress, receivedAtAddress }) {
               position={receivedAtPosition}
               map={map}
               icon={{
-                url: "https://i.ibb.co/pWjy9G9/flag-icon-map.png",
+                url: "https://i.ibb.co/frdGQmd/flag-blue.png",
                 scaledSize: new window.google.maps.Size(40, 40),
               }}
             />
